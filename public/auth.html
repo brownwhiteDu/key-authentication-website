@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Authentication</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-white">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-2xl border border-gray-200">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Secure Access</h1>
+            <p class="text-gray-600">Enter your access key to continue</p>
+        </div>
+
+        <form action="/verify-key" method="POST" class="space-y-6">
+            <div>
+                <label for="key" class="block text-sm font-medium text-gray-700 mb-2">Access Key</label>
+                <input 
+                    type="text" 
+                    id="key" 
+                    name="key" 
+                    required 
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors"
+                    placeholder="Enter your key"
+                >
+            </div>
+
+            <button 
+                type="submit" 
+                class="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors duration-200 font-medium"
+            >
+                Submit
+            </button>
+        </form>
+
+        <div id="error-message" class="mt-4 text-center text-red-600 hidden">
+            Invalid access key. Please try again.
+        </div>
+    </div>
+
+    <script>
+        // Show error message if URL has error parameter
+        if (window.location.search.includes('error=invalid')) {
+            document.getElementById('error-message').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
